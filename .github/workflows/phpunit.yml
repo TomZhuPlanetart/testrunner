@@ -37,10 +37,10 @@ jobs:
     - uses: actions/cache@v4
       id: cache-extensions
       with:
-        key: ${{ runner.os }}-php-yaml-pdo-mysqli-pcntl-calendar
+        key: ${{ runner.os }}-v1-php-yaml-pdo-mysqli-pcntl-calendar
         path: |
           /usr/local/etc/php/conf.d/docker-php-ext*.ini
-          /usr/local/lib/php/extensions/
+          /usr/local/lib/php/extensions/no-debug-non-zts-20210902/*.so
 
     - name: Install PHP extensions
       if: steps.cache-extensions.outputs.cache-hit != 'true'
