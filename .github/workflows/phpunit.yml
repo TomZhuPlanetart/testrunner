@@ -37,7 +37,7 @@ jobs:
     - uses: actions/cache@v4
       id: cache-extensions
       with:
-        key: ${{ runner.os }}-v3-php-yaml-pdo-mysqli-pcntl-calendar-uopz-rdkafka-redis-shmop-sockets-soap-swoole-sysvmsg-sysvsem-sysvshm-tidy
+        key: ${{ runner.os }}-v3-php-yaml-pdo-mysqli-pcntl-calendar-uopz-rdkafka-redis-shmop-sockets-soap-sysvmsg-sysvsem-sysvshm-tidy
         path: |
           /usr/local/etc/php/conf.d/docker-php-ext*.ini
           /usr/local/lib/php/extensions/no-debug-non-zts-20210902/*.so
@@ -46,8 +46,7 @@ jobs:
       if: steps.cache-extensions.outputs.cache-hit != 'true'
       run: |
         pecl install yaml uopz rdkafka redis
-        printf "no\nyes\nyes\nyes\n" | pecl install swoole
-        docker-php-ext-enable yaml uopz rdkafka redis swoole
+        docker-php-ext-enable yaml uopz rdkafka redis
         docker-php-ext-install pdo pdo_mysql mysqli pcntl calendar shmop sockets soap sysvmsg sysvsem sysvshm tidy
     
     - name: Wait for MySQL
