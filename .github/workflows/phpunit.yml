@@ -76,4 +76,4 @@ jobs:
         echo "MYSQL_DATABASE_DEFAULT_US=test_planetart" >> .env.phpunit
 
     - name: Run tests
-      run: ls -al && php -i && mysql -h mysql -u root -proot -e "show processlist;"
+      run: ls -al && php -m && mysql -h mysql -u root -proot -e "show processlist;"
