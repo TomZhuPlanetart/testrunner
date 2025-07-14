@@ -32,7 +32,7 @@ jobs:
     - name: Install system dependencies
       run: |
         apt-get update
-        apt-get install -y default-mysql-client tar zip unzip libyaml-dev librdkafka-dev
+        apt-get install -y default-mysql-client tar zip unzip libyaml-dev librdkafka-dev libssl-dev
 
     - uses: actions/cache@v4
       id: cache-extensions
@@ -45,7 +45,8 @@ jobs:
     - name: Install PHP extensions
       if: steps.cache-extensions.outputs.cache-hit != 'true'
       run: |
-        pecl install yaml uopz rdkafka redis swoole
+        pecl install yaml uopz rdkafka redis
+        pecl install -D 'enable-swoole-json=no' -D 'enable-sockets=yes' -D 'enable-openssl=yes' -D 'enable-swoole-curl=yes' swoole
         docker-php-ext-enable yaml uopz rdkafka redis swoole
         docker-php-ext-install pdo pdo_mysql mysqli pcntl calendar random shmop sockets soap sysvmsg sysvsem sysvshm tidy
     
