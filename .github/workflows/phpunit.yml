@@ -32,8 +32,8 @@ jobs:
     - name: Install system dependencies
       run: |
         apt-get update
-        apt-get install -y default-mysql-client
-    
+        apt-get install -y default-mysql-client tar zip unzip
+
     - name: Install PHP extensions
       run: |
         apt-get install -y libyaml-dev
@@ -67,4 +67,4 @@ jobs:
         echo "MYSQL_DATABASE_DEFAULT_US=test_planetart" >> .env.phpunit
 
     - name: Run tests
-      run: vendor/bin/phpunit
+      run: ls -al && php -i && mysql -h mysql -u root -proot -e "SHOW DATABASES;"

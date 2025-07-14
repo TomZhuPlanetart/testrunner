@@ -1,0 +1,77 @@
+{
+    "name": "planetart/planetart",
+    "description": "Planetart Main",
+    "type": "project",
+    "autoload": {
+        "files": [
+            "common/pdf-php/pdfsetting.php",
+            "vendor/tecnickcom/tcpdf/tcpdf_autoconfig.php",
+            "common/pdf-php/class.pdf.php",
+            "common/pdf-php/Potracio.php",
+            "common/pdf-php/CustomEnvelopePDF.php"
+        ],
+        "psr-4": {
+            "Planetart\\Planetart\\": "common/classes/psr4/",
+            "app\\rest\\" : "common/rest/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "suggest": {
+        "ext-imagick": "*"
+    },
+    "require": {
+        "ext-json": "*",
+        "ext-simplexml": "*",
+        "ext-curl": "*",
+        "ext-gd": "*",
+        "ext-pdo": "*",
+        "ext-dom": "*",
+        "ext-soap": "*",
+        "ext-imap": "*",
+        "ext-iconv": "*",
+        "ext-exif": "*",
+        "ext-apcu": "*",
+        "ext-openssl": "*",
+        "ext-bcmath": "*",
+        "ext-zlib": "*",
+        "ext-libxml": "*",
+        "ext-gettext": "*",
+        "ext-zip": "*"
+    },
+    "config": {
+        "platform": {
+            "php": "8.3",
+            "ext-json": "8.3.7",
+            "ext-simplexml": "dev-master",
+            "ext-curl": "dev-master",
+            "ext-gd": "dev-master",
+            "ext-pdo": "dev-master",
+            "ext-dom": "dev-master",
+            "ext-soap": "dev-master",
+            "ext-imap": "dev-master",
+            "ext-iconv": "dev-master",
+            "ext-redis": "dev-master",
+            "ext-imagick": "dev-master",
+            "ext-exif": "dev-master",
+            "ext-memcache": "dev-master",
+            "ext-memcached": "dev-master",
+            "ext-apcu": "dev-master",
+            "ext-openssl": "dev-master",
+            "ext-bcmath": "dev-master",
+            "ext-zlib": "dev-master",
+            "ext-libxml": "dev-master",
+            "ext-fileinfo": "dev-master",
+            "ext-gettext": "dev-master",
+            "ext-zip": "dev-master"
+        },
+        "platform-check": false,
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}
