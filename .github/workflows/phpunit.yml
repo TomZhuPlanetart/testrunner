@@ -46,7 +46,7 @@ jobs:
       if: steps.cache-extensions.outputs.cache-hit != 'true'
       run: |
         pecl install yaml uopz rdkafka redis
-        pecl install -D 'enable-swoole-json=no' -D 'enable-sockets=yes' -D 'enable-openssl=yes' -D 'enable-swoole-curl=yes' swoole
+        printf "no\nyes\nyes\nyes\n" | pecl install swoole
         docker-php-ext-enable yaml uopz rdkafka redis swoole
         docker-php-ext-install pdo pdo_mysql mysqli pcntl calendar random shmop sockets soap sysvmsg sysvsem sysvshm tidy
     
