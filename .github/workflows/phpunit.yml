@@ -34,7 +34,17 @@ jobs:
         apt-get update
         apt-get install -y default-mysql-client tar zip unzip
 
+    - uses: actions/cache@v4
+      id: cache-extensions
+      with:
+        path:
+          - /usr/local/etc/php/conf.d/docker-php-ext*.ini
+          - /usr/local/lib/php/extensions/
+        restore-keys: |
+          ${{ runner.os }}-php-yaml-pdo-mysqli-pcntl-calendar
+
     - name: Install PHP extensions
+      if: steps.cache-extensions.outputs.cache-hit != 'true'
       run: |
         apt-get install -y libyaml-dev
         pecl install yaml
