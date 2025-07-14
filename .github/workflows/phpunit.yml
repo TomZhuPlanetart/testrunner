@@ -32,7 +32,7 @@ jobs:
     - name: Install system dependencies
       run: |
         apt-get update
-        apt-get install -y default-mysql-client tar zip unzip libyaml-dev librdkafka-dev libssl-dev
+        apt-get install -y default-mysql-client tar zip unzip libyaml-dev librdkafka-dev libssl-dev libcurl-dev
 
     - uses: actions/cache@v4
       id: cache-extensions
