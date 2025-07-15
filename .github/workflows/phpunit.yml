@@ -38,7 +38,7 @@ jobs:
       id: php-info
       run: |
         echo "php-version=$(php -r 'echo PHP_MAJOR_VERSION.\".\".PHP_MINOR_VERSION;')" >> $GITHUB_OUTPUT
-        echo "php-extension-dir=$(php -r 'echo ini_get(\"extension_dir\");')" >> $GITHUB_OUTPUT
+        echo "php-extension-dir=$(php-config  --extension-dir)" >> $GITHUB_OUTPUT
 
     - uses: actions/cache@v4
       id: cache-extensions
