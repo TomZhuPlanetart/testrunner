@@ -64,6 +64,10 @@ jobs:
     
     - name: Create test database
       run: |
+        # log_bin_trust_function_creators=1
+        mysql -h mysql -u root -proot -e "SET GLOBAL log_bin_trust_function_creators=1;"
+        # sql-mode=""
+        mysql -h mysql -u root -proot -e "SET GLOBAL sql_mode='';"
         mysql -h mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS test_planetart;"
         mysql -h mysql -u root -proot -e "GRANT ALL PRIVILEGES ON test_planetart.* TO 'root'@'%';"
         mysql -h mysql -u root -proot -e "FLUSH PRIVILEGES;"
