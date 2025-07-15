@@ -8,7 +8,7 @@ on:
 jobs:
   phpunit:
     runs-on: ubuntu-latest
-    container: php:8.1-cli
+    container: php:8.3-cli
     
     services:
       mysql:
@@ -34,13 +34,19 @@ jobs:
         apt-get update
         apt-get install -y default-mysql-client tar zip unzip libyaml-dev librdkafka-dev libssl-dev libcurl4-openssl-dev zlib1g-dev libbrotli-dev libxml2-dev
 
+    - name: Get PHP Info
+      id: php-info
+      run: |
+        echo "php-version=$(php -r 'echo PHP_MAJOR_VERSION.\".\".PHP_MINOR_VERSION;')" >> $GITHUB_OUTPUT
+        echo "php-extension-dir=$(php -r 'echo ini_get(\"extension_dir\");')" >> $GITHUB_OUTPUT
+
     - uses: actions/cache@v4
       id: cache-extensions
       with:
-        key: ${{ runner.os }}-v3-php-yaml-pdo-mysqli-pcntl-calendar-uopz-rdkafka-redis-shmop-sockets-soap-sysvmsg-sysvsem-sysvshm
+        key: ${{ runner.os }}-v4-${{ steps.php-info.outputs.php-version }}-php-yaml-pdo-mysqli-pcntl-calendar-uopz-rdkafka-redis-shmop-sockets-soap-sysvmsg-sysvsem-sysvshm
         path: |
           /usr/local/etc/php/conf.d/docker-php-ext*.ini
-          /usr/local/lib/php/extensions/no-debug-non-zts-20210902/*.so
+          ${{ steps.php-info.outputs.php-extension-dir }}/*.so
 
     - name: Install PHP extensions
       if: steps.cache-extensions.outputs.cache-hit != 'true'
